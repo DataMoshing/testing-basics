@@ -23,14 +23,14 @@ test("adding positive numbers is not zero", () => {
     }
 });
 
-// test("null", () => {
-//     const n = null;
-//     expect(n).toBeNull();
-//     expect(n).toBeDefined();
-//     expect(n).not.toBeUndefined();
-//     expect(n).not.toBeTruthy();
-//     expect(n).not.toBeFalsy();
-// });
+test("null", () => {
+    const n = null;
+    expect(n).toBeNull();
+    expect(n).toBeDefined();
+    expect(n).not.toBeUndefined();
+    expect(n).not.toBeTruthy();
+    expect(n).not.toBeFalsy();
+});
 
 test("zero", () => {
     const z = 0;
@@ -54,8 +54,6 @@ test("two plus two", () => {
 });
 
 // "For floating point equality, use toBeCloseTo instead of toEqual, because you don't want a test to depend on a tiny rounding error."
-
-
 test("adding floating point numbers", () => {
     const value = 0.1 + 0.2;
     //expect(value).toBe(0.3) - This won't work because of rounding error.
@@ -82,8 +80,12 @@ function compileAndroidCode() {
 test("compiling android goes as expected", () => {
     expect(() => compileAndroidCode()).toThrow();
     expect(() => compileAndroidCode()).toThrow(Error);
+
+    // You can also use a string that must be contained in the error message or a regexp.
     expect(() => compileAndroidCode()).toThrow("you are using the wrong JDK");
     expect(() => compileAndroidCode()).toThrow(/JDK/);
-    // expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK$/);
+
+    // Or you can match an exact error message using a regexp like below
+    expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK$/);
     expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK!$/);
 })
